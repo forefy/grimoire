@@ -44,6 +44,10 @@ Select the minimal demonstration that proves the vulnerability exists and convey
 Follow the principle of **minimum viable proof** — demonstrate the issue without going beyond
 what is necessary.
 
+**Test Case Proof of Concepts**
+
+Analyze whether it is possible to write the proof of concept as a test case to extend an existing test suite. Determine the best place to put the proof of concept code if that's the case. Then ask the user i they would like to extend the test suite and if this location is correct.
+
 **Approach selection guidelines:**
 
 | Scenario | Recommended Approach |

@@ -19,6 +19,22 @@ to understand, reproduce, and fix security issues. Every PoC produced under this
 assumes an authorized security research context — pentesting engagements, bug bounty
 programs, coordinated disclosure, or CTF challenges.
 
+## Workflow Checklist
+
+When this skill is activated, create a todo list from the following steps. Mark each task
+in_progress before starting it and completed when done. Use descriptions from the detailed
+sections below.
+
+```
+- [ ] 1. Gather vulnerability details — study the issue and impacted code, establish vuln class, root cause, attack surface, prerequisites, and impact. Confirm with user.
+- [ ] 2. Define exploit flow — formulate goal condition, determine mono/poly flow, sketch steps if multi-step. Confirm with user.
+- [ ] 3. Determine PoC approach — choose test case vs script, for smart contracts decide fork/unit test and whether to use forge-poc-templates. Confirm with user.
+- [ ] 4. Write the PoC — implement with header block, section comments, benign payloads, clear output, and all implementation guidelines. Confirm with user.
+- [ ] 5. Review before delivery — verify checklist: no destructive payloads, demonstrates the vuln, clear comments, clear output, complete reproduction steps.
+```
+
+---
+
 ## PoC Writing Workflow
 
 Follow these steps in order when writing a proof of concept.

@@ -38,7 +38,35 @@ If any detail is unclear, ask the user before proceeding. A PoC built on incorre
 
 Study both the impacted code and the issue description provided by the user, make sure to understand the exploit flow deeply.
 
-### 2. Determine PoC Approach
+Check in with the user before continuing!
+
+### 2. Exploit Flow, Kill Chain and Scope
+
+Together with the user you've built a solid understanding of a bug, now you have to establish how the flaw can be demonstrated.
+
+*goal condition*
+
+The purpose of a PoC is to demonstrate and test the validity of a bug, but also to demonstrate it's impact. Study the potential impact 
+of the issue and determine what the minimum viable proof of impact is. Formulate a goal condition that's a clear demonstration of the impact:
+* open calc.exe ( to demonstrate an RCE )
+* have a security critical function return an incorrect value ( e.g. have a jwt verification function pass for an invalid input )
+* reach a smart contract state where the attacker has more funds than they started 
+* have an alert box open on a web page (xss)
+
+*flow*
+
+Determine whether the exploit has multiple steps or whether it requires just a single one.
+
+**mono** some proof of concepts comprise a single step. A reflected XSS for example might be demonstrated with a single curl statement.
+**poly** some proof of concepts comprise multiple steps, especially those formulated as unit tests.
+
+Study the vulnerability and determine which (mono or poly) is necessary to reach the PoC goal condition.
+
+If multiple steps are required, sketch out the exploit flow step by step. 
+
+Check in with the user, have them review the flow you designed and leverage their input to adapt.
+
+### 3. Determine PoC Approach
 
 Select the minimal demonstration that proves the vulnerability exists and conveys its impact.
 Follow the principle of **minimum viable proof** — demonstrate the issue without going beyond
@@ -65,6 +93,21 @@ The preferred method (after test cases) is a single python script that leverages
 When multiple approaches work, prefer the one that is **simplest to reproduce** for the
 maintainer receiving the report.
 
+### 4. Select Output Format
+
+Adapt the deliverable format to the vulnerability and audience:
+
+- **Standalone script** — Most common. A single `.py`, `.sh`, or `.rb` file that reproduces
+  the issue end-to-end. Best for: injection flaws, auth bypasses, race conditions.
+- **curl command(s)** — For simple HTTP-based issues where a script is overkill. Best for:
+  IDOR, open redirects, header injection, simple SSRF.
+- **Code snippet + explanation** — When the vulnerability is in source code and the PoC is
+  a specific input or configuration. Best for: logic bugs, crypto weaknesses, unsafe defaults.
+- **Multi-step reproduction** — Numbered steps mixing commands, code, and explanation. Best
+  for: complex chains, multi-stage attacks, privilege escalation paths.
+
+For detailed format guidance per vulnerability class, consult **`references/poc-formats.md`**.
+
 ### 3. Write the PoC
 
 Structure every PoC with these elements:
@@ -76,6 +119,10 @@ Affected:     [Component, version, file/endpoint]
 Impact:       [One-line impact statement]
 Author:       [Researcher name/handle]
 ```
+
+Use the comment standard that best applies for the language/ framework that the PoC is written in.
+
+This means natspec for solidity, javadoc for java, etc.
 
 **Implementation guidelines:**
 - **Use benign payloads.** Demonstrate the vulnerability without causing harm. For example, use
@@ -92,63 +139,27 @@ Author:       [Researcher name/handle]
   confirmed: server returned injected content` or `[-] Target does not appear vulnerable`.
 - **Keep dependencies minimal.** Prefer standard libraries. If external dependencies are
   required, document them in a requirements section.
+- **Testcase Success.** When implementing proof of concepts as a testcase testcase success
+  should indicate that the proof of concept workred.
+- **Monetary Impact.** If the flaw allows extraction of funds such as for smart contract
+  vulnerabilities then clearly demonstrate profitability of an attack. Measure attacker 
+  balance before and after the proof of concept and determine profit. Print this profit so 
+  the user can verify.
 
-### 4. Select Output Format
-
-Adapt the deliverable format to the vulnerability and audience:
-
-- **Standalone script** — Most common. A single `.py`, `.sh`, or `.rb` file that reproduces
-  the issue end-to-end. Best for: injection flaws, auth bypasses, race conditions.
-- **curl command(s)** — For simple HTTP-based issues where a script is overkill. Best for:
-  IDOR, open redirects, header injection, simple SSRF.
-- **Code snippet + explanation** — When the vulnerability is in source code and the PoC is
-  a specific input or configuration. Best for: logic bugs, crypto weaknesses, unsafe defaults.
-- **Multi-step reproduction** — Numbered steps mixing commands, code, and explanation. Best
-  for: complex chains, multi-stage attacks, privilege escalation paths.
-
-For detailed format guidance per vulnerability class, consult **`references/poc-formats.md`**.
-
-### 5. Add Context and Remediation
-
-After the PoC code, include:
-
-- **Reproduction steps** — Numbered list a maintainer can follow to confirm the issue.
-  Assume they have access to the source code and a local test environment.
-- **Impact analysis** — Concrete description of what an attacker could achieve. Avoid
-  hyperbole; be precise. State the worst realistic outcome.
-- **Suggested remediation** — Recommend a fix direction. Reference specific functions,
-  libraries, or patterns where possible (e.g., "use parameterized queries", "add CSRF token
-  validation", "apply bounds checking at line N").
-- **References** — Link to relevant CWEs, CVEs, or advisories if applicable.
+Important: Never run the PoC against a production environment without asking the user!
 
 ### 6. Review Before Delivery
 
 Before finalizing, verify:
 
-- [ ] PoC actually demonstrates the vulnerability (not just a theoretical description)
 - [ ] No destructive payloads or actions
+- [ ] PoC actually demonstrates the vulnerability (not just a theoretical description)
 - [ ] Target is parameterized (not hardcoded to a live system)
 - [ ] Comments explain the exploit chain clearly
 - [ ] Output clearly indicates success or failure
 - [ ] Dependencies are documented
 - [ ] Reproduction steps are complete and ordered
 - [ ] Remediation suggestion is actionable
-
-## Language Selection
-
-Choose the implementation language based on context:
-
-- **Python** — Default choice for most PoCs. Rich standard library, readable, widely
-  understood by developers across ecosystems.
-- **Bash/curl** — Simple HTTP-based PoCs, quick one-liners, pipeline demonstrations.
-- **C** — Memory corruption, binary exploitation, kernel issues.
-- **JavaScript/TypeScript** — Browser-based vulnerabilities, Node.js issues, DOM-based XSS.
-- **Ruby** — Ruby/Rails-specific vulnerabilities.
-- **Go/Rust** — When the target is written in these languages and reproduction requires it.
-- **Solidity (Foundry)** — Smart contract vulnerabilities. See `references/smart-contracts.md`.
-
-Match the language to the target ecosystem when possible — a Rails developer will understand
-a Ruby PoC faster than a Python one.
 
 ## Additional Resources
 

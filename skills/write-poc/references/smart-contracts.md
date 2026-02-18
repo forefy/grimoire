@@ -107,6 +107,30 @@ forge test --match-test test_exploit --fork-url $ETH_RPC_URL -vvv
 - Assert the exploit outcome with descriptive failure messages
 - Include `-vvv` in the run command for full trace output
 
+### Resolving Interfaces for Fork Tests
+
+Fork tests interact with already-deployed contracts, so the test file needs interface
+definitions with correct function signatures. Getting this wrong causes silent failures
+(the call reverts or hits a fallback) with no compiler warning.
+
+- **Check the project first.** Look in `src/`, `interfaces/`, and `lib/` for existing
+  interface files before writing your own. Many protocols ship their interfaces as part of
+  the source tree.
+- **Create minimal interfaces.** If no existing definition is available, define an interface
+  containing only the functions the exploit calls — do not attempt to replicate the full ABI.
+  This keeps the PoC readable and avoids unnecessary compilation errors from unrelated
+  functions.
+- **Use block explorer ABIs when available.** For verified contracts on Etherscan (or the
+  chain's equivalent explorer), fetch the ABI to confirm exact function signatures, parameter
+  types, and return types before writing the interface.
+- **Keep interfaces inline or co-located.** Define them at the top of the test file (as shown
+  in the template above) or in a single dedicated interfaces file alongside the test. The PoC
+  must be self-contained so a reviewer can run it without hunting for dependencies.
+- **Verify function selectors match the deployment.** A wrong parameter type or a missing
+  `returns` clause produces a different four-byte selector. If the test silently fails or
+  reverts with no useful error, compare your interface's selectors against the on-chain
+  contract using `cast sig` or the explorer's ABI.
+
 ## Unit Test Template
 
 ```solidity
@@ -190,4 +214,28 @@ forge test --match-test test_exploit -vvv
   help maintainers understand the exploit flow.
 - **One exploit per test function.** If demonstrating multiple attack vectors, use separate
   `test_` functions with descriptive names.
+
+## Attacker Contracts vs Cheatcode Simulation
+
+When the exploit involves callbacks, reentrancy, flash loans, or any on-chain interaction
+pattern that spans multiple steps within a single transaction, build an actual attacker contract
+rather than simulating the behavior with cheatcodes. Attacker contracts produce more realistic
+and convincing PoCs because they demonstrate the actual exploit path an attacker would take
+on-chain.
+
+**Use cheatcodes for preconditions and context, not for core attack logic:**
+- `deal()` — fund the attacker or seed contract balances
+- `vm.prank` / `vm.startPrank` — impersonate an account to set up state or trigger the exploit entry point
+- `vm.warp`, `vm.roll` — advance timestamps or block numbers to reach a vulnerable window
+- `vm.expectRevert`, `vm.expectEmit` — assert expected side effects
+
+**Use an attacker contract when the exploit requires:**
+- **Reentrancy** — the attack is callback-driven; the attacker contract must implement `receive()` or `fallback()` to re-enter the target
+- **Flash loans** — the attacker contract must implement the lender's callback interface (e.g., `onFlashLoan`, `executeOperation`) to receive and repay the loan atomically
+- **Sandwich attacks** — the attacker contract must execute front-run and back-run operations within controlled transaction ordering
+- **Any exploit requiring atomic multi-step execution** — if the attack only works when multiple calls happen within a single transaction, an attacker contract is the only realistic way to demonstrate it
+
+**Keep attacker contracts minimal.** Only include the logic needed to trigger and complete the
+exploit — constructor, attack entry point, and any required callbacks. Avoid unnecessary
+abstractions or helper functions that obscure the exploit flow.
 

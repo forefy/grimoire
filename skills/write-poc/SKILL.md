@@ -132,6 +132,13 @@ This means natspec for solidity, javadoc for java, etc.
   vulnerabilities then clearly demonstrate profitability of an attack. Measure attacker 
   balance before and after the proof of concept and determine profit. Print this profit so 
   the user can verify.
+- **Use section header comments.** Organize PoC code into logical blocks using the format
+  `// == [ Section Name ] ==` to let readers quickly skim and distinguish preamble/setup from
+  the core exploit logic.
+  - Common sections include Set Up, Build Payload, Execute Exploit, and Verify Impact, but
+    the exact sections depend on the vulnerability.
+  - Keep the number of sections minimal — less is more. Only introduce a section break where
+    the code shifts to a meaningfully different phase of the exploit.
 
 Important: Never run the PoC against a production environment without asking the user!
 

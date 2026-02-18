@@ -99,6 +99,10 @@ The preferred method (after test cases) is a single python script that leverages
 When multiple approaches work, prefer the one that is **simplest to reproduce** for the
 maintainer receiving the report.
 
+**Confirm**
+
+Always confirm the PoC approach with the user.
+
 ### 4. Write the PoC
 
 Structure every PoC with these elements:
@@ -145,6 +149,10 @@ This means natspec for solidity, javadoc for java, etc.
     the code shifts to a meaningfully different phase of the exploit.
 
 Important: Never run the PoC against a production environment without asking the user!
+
+**Confirm**
+
+Confirm that the whole PoC is implemented.
 
 ### 5. Review Before Delivery
 

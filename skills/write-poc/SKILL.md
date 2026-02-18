@@ -153,7 +153,5 @@ For detailed patterns and format guidance, consult:
 
 - **`references/poc-formats.md`** — Detailed output format templates and examples for each
   vulnerability class
-- **`references/vulnerability-patterns.md`** — Common vulnerability patterns, root causes,
-  and demonstration approaches organized by class
 - **`references/smart-contracts.md`** — Smart contract PoC approach selection, Foundry
   templates, cheatcode conventions, and vulnerability patterns

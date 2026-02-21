@@ -1,4 +1,94 @@
+## Backpressure 
 
+Only allow autonomy with back-pressure methods available. 
+
+Example: Find me all locations where X happens
+Back pressure: A semgrep module that actually finds all locations where X happens
+
+You should never, ever, ask a completeness question to an agent that can not be backed up with a back-pressure skill. 
+
+Example: Are all versions of this datastructure parsed correctly
+
+This query lacks back pressure. The agent can not produce an artifact that ensures it actually checks all locations 
+where a datastructure is parsed, or that it is parsed correctly. 
+
+Improvement: Find all usages of this datastructure and check whether the version number in the parse function matches 
+that of the usage function. 
+
+This is better because the agent can distill this into a static analysis module. 
+
+I've mentioned semgrep and static analysis twice. They're key unlockers in improving the reliability of agent co-auditors.
+
+### Grimoire 
+
+There should be a semgrep, slither and codeql skill. 
+
+There should also be a back-pressure skill. This skill would mostly be about injecting a hook that ensures the agent applies 
+back-pressure whenever possible. 
+
+I think it might also be worthwhile to introduce a back-pressure agent that tries to do a soft "fact check" on queries that 
+can not be backpressured. As it's simply not always practical to try to achieve back-pressure through static analysis.
+
+Proof of concepts for findings are a great example of a task that naturally induces back-pressure.
+
+---
+
+
+## Progressive Disclosure and Context Building 
+
+A lot of my security research time is spent tracking down flows. I start with a point of interest,
+such as an intricate / complex mechansim performing sensitive operations. I review the mechanism and based 
+on my understanding come up with things that could go wrong. I then investigate the different flows that 
+interact with the given mechanism and see if the pre-conditions to my attack scenario can be met. 
+
+There are two areas where an agent might aid me in this process. 
+
+The one with the highest leverage is in identifying the flows that interact with the interesting mechanism.
+
+LSPs are slow (esp. find references) and codebases can be constructed with tons of layers of abstraction. As 
+a result a lot of time can get lost in navigating around, cross referencing, going back and forth, etc. 
+
+The process of looking at control- and dataflow is actually quite straightforward and something that an agent can 
+navigate quite well. Furthermore, an agent can handle abstract tasks like "please point out areas which perform auth checks".
+
+### Progressive Disclosure / Knowledge Graph 
+
+Callgraphs, dataflow graphs, etc are essentially just different relations between abstract components. An interactive 
+graph can be leveraged by an agent to quickly navigate the codebase and identify the code that I want to have a look at w.r.t. any given flow. 
+
+An lsp server exposes much of these relations and is likely sufficient to cover most usecases. 
+
+### Context Building 
+
+The idea of context building is to extend the existing knowledge graph exposed by an lsp with learnings and conclusions from the audit. 
+
+For example, I might find out that a function does a specific check which covers a unique set of edge cases. I want to make a note with 
+that conclusion to be surfaced in future investigations. The idea here is not to have the agent reason about these conclusions, it's just 
+to have it surface these conclusions to me. 
+
+The problem with asking the agent with reasoning or even coming up with conclusions is the phenomenon that continued reasoning diverges 
+and that the ideas/ conclusions are not amenable to back-pressure.
+
+That said, there might be a set of conclusions that are amenable to back-pressure. This is an interesting observation. For example, an 
+agent might notice a certain function produces html code that's potentially vulnerable to xxs injection. This is an hypothesis that's 
+easily testible by producing a small test case. 
+
+### Gadgets
+
+A phenomenon I have observed in my bounty hunting is that I collect a set of what I would call gadgets. 
+
+The term is derived from the way that ROP-gadgets are used in binariy exploitation. Essentially, gadgets are tricks I found that 
+allow me to have the code do something unexpected. Usually on their own these gadgets are benign, they might rise to the level of low 
+severity issues, but often not even that. 
+
+These gadgets are often essential in enabling critical vulnerabilies to be exploitable. 
+
+I currently mostly keep a mental note about these, but it might be interesting to augment my workflow such that an agent indexes 
+my gadgets and suggests them when I'm considering whether an issue can be exploited. 
+
+It might even be useful to have the agent itself produce gadgets, or incorporate a gadget search in its proof of concept development workflow.
+
+A nice thing is that gadgets are generally expressable as unit tests.
 
 ## Grimoire Identify
 
@@ -9,7 +99,6 @@ The following is an idea for a skill that's run on a researchers first interacti
 This skill will help a security researcher build context when they start on a new project. The same context will also prime future agents that the security researcher might leverage.
 
 Similar to /init this skill will create a file `GRIMOIRE.md`.
-
 
 
 ### Learnings from Top researchers

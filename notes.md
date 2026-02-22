@@ -16,16 +16,24 @@ skills:
   * slither
 * finding
 * report 
+* enscribe - build detection modules / knowledge base to help surface issues in future audits 
 
 agents:
 * sigil     (general sub-agent)
 * sage      (back-pressure agent that double checks and gives a second opinion)
 * librarian (fetches external documentation where relevant)
 * imp       (reviews findings from external audits that might provide relevant information)
+* scribe    (manages the personal spellbook)
 
 grimoire:
 * a guide about how to use the skills and agents that make up grimoire
     * this could also be a series of blog posts 
+
+alchemy:
+* set of tools and configurations around the skills and agents 
+* I'm thinking about centering this around pi which is aimed at being extensible
+* can build features like alloyed agents 
+
 
 ## Hypothesis Generation 
 

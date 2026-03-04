@@ -74,10 +74,41 @@ It's important to not go too wild. It's often not very suseful that a c program 
 
 The goal here is to point out the application specific sensitive flows and components. 
 
+### The Right Time for Automation
 
-### Agent Instructions
+Another feature of grimoire is the [[scribe]] and the users personal [[spellbook]].
+
+Over time users will acquire a set of static analysis modules that go beyond what's publicly available. This is their own secret arcane compendium.
+
+The start of an audit ( when one would kick off `/summon` ) is the exact right time to run these static analysis modules and daemons.  
 
 
+### Directory structure
 
+On summoning Grimoire sets up some infrastructure for security research. 
 
-* Cross reference findings from documentation back to the code
+Ideally you start grimoire in a directory containing a directory with the code that's in scope. 
+
+```
+audits/
+    your_next_audit/  <-- here 
+        in_scope_repo/
+```
+
+This allows grimoire some flexibility to setup files, directories, worktrees without polluting the scoped code.  Grimoire should 
+check it's working directory and confirm that you've set things up correctly.
+
+Within your project grimoire will create the following directory structure:
+
+```
+project/ 
+    in_scope_repo/
+    grimoire/
+        findings/ <- the findings during this audit 
+        spells/   <- scripts proof of concepts and static analysis modules
+        tomes/    <- documentation and learnings 
+    GRIMOIRE.md   <- main contextual map
+```
+
+GRIMOIRE.md is the main entrypoint for the agent into this codebase and as a result grimoire keeps it as lean as possible. Similar to 
+obsidian there will be `[[doc-name]]` style cross-linking between documents that allow an agent to navigate the grimoire artifacts.

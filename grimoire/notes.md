@@ -34,6 +34,14 @@ alchemy:
 * I'm thinking about centering this around pi which is aimed at being extensible
 * can build features like alloyed agents 
 
+It might also be interesting to look at context engineering in relation to the skills and agents.
+
+---
+
+* many skill collections are opinionated and there is a learning curve 
+* grimoire is essentially the same, but it would be good to enable compatibility, or look for ways to enable it
+---
+
 # What is Grimoire?
 
 Grimoire is a set of skills, agents and tools designed with the specific intention of leverage.
@@ -50,9 +58,42 @@ That said there are things to learn about grimoire.
 Here is your first lesson: *summoning* 
 
 You're probably familiar with the claude `/init` command, which explores a codebase and builds a CLAUDE.md file with a digest for future 
-agents on how to interact with the codebase.
+agents on how to interact with the codebase. `/summon` is similar in nature. An exploration of the codebase provides grimoire with a good
+understanding of how everything fits together. However, where `/init` sets agents up for success in building new features `/summon` sets 
+agents up for doing well on queries from security researchers.
+
+You'll discover different skills and agents help you in your daily tasks, amongst many things you'll notice a *scribe* agent maintaining 
+your personal spell book. `/summon` also kicks of several daemons that perform automatic analyses that the *scribe* agent built based on 
+your findings. 
 
 Dive deeper here: [[summon]]
+
+## Friction
+Grimoire is set up to provide as little friction as possible.
+
+You can start out just using it as you would a normal agent, no need to study the documentation for days. No need to understand 
+an esoteric philosophy. 
+
+Just use it. 
+
+Grimoire is steers the agent in the right direction.
+
+## Progressing 
+
+Grimoire is a living thing, it grows as you do. 
+
+We've compiled a set of *tomes* with instructions to help you unlock some of the secrets contained within.
+
+- [[back-pressure and what not to ask]]
+- [[hypothesis generation - fail as fast as possible]]
+
+## De-Whimsify
+
+If you find the arcane style of grimoire unfit for your professional workflow.
+
+Too bad. 
+
+---
 
 # Findings and Other Artifacts
 
@@ -171,3 +212,10 @@ my gadgets and suggests them when I'm considering whether an issue can be exploi
 It might even be useful to have the agent itself produce gadgets, or incorporate a gadget search in its proof of concept development workflow.
 
 A nice thing is that gadgets are generally expressable as unit tests.
+
+---
+
+* detection agent / skill for rounding issues
+    * detect places where rounding occurs
+    * identify direction of rounding in favour of protocol
+    * identify rounding amplification 

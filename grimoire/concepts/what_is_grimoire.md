@@ -17,7 +17,7 @@ So where does the leverage come from?
 
 Many places! For example, grimoire provides a [[proof of concept]] skill. At first glance, proof of concept writing might seem trivial. However, you'll often see that one-shotting proof of concepts leads to suboptimal results. Grimoire steers agents to produce clean proof of concepts that communicate impact and demonstrate flaws in simple and understandable ways.
 
-Another example is in automation. During audits you often encounter bugs that could've been detected using some automated approach (static analysis or agentic). However, you might not have had the time to actually look into actually building the detector. This is where Grimoire's [[scribe]] agent steps in! It will automatically review your findings and conversations for automation opportunities, and build the detection modules for you! 
+Another example is in automation. During audits you often encounter bugs that could've been detected using some automated approach (static analysis or agentic). However, you might not have had the time to actually look into actually building the detector. This is where Grimoire's [[agents/scribe]] agent steps in! It will automatically review your findings and conversations for automation opportunities, and build the detection modules for you! 
 
 Every audit kicks off an automated run of all modules you've had built before, providing a more comprehensive initial scrape with every audit.
 

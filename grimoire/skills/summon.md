@@ -93,7 +93,7 @@ Similar to obsidian Grimoire employs `[[doc-name]]` style cross-linking between 
 
 Note: The scribe is not implemented yet so this is WIP.
 
-Another feature of grimoire is the [[scribe]] and the users personal [[spellbook]].
+Another feature of grimoire is the [[agents/scribe]] and the users personal [[spellbook]].
 
 Over time users will acquire a set of static analysis modules that go beyond what's publicly available. This is their own secret arcane compendium.
 

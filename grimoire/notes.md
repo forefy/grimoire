@@ -46,6 +46,8 @@ It would be nice to have an idea about how grimoire should integrate with extern
 
 Also, the scribe functionality is kind of close to something that you could build into an automatically learning agent pipeline. Something that just consumes the latest audit reports and potentially does a differential analysis to see how it needs to update itself to be able to detect the same bugs.
 
+How does consolidation work between global scribe artifacts and local / project specific scribe artifacts?
+
 ---
 
 # Findings and Other Artifacts

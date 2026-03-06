@@ -1,0 +1,1 @@
+A skill which teaches an agent how to use semgrep.

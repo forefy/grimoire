@@ -1,4 +1,6 @@
-The scribe and your [[personal grimoire]] bring a level of autonomy to grimoire which is similar to that provided by autonomous audit agents. 
+The scribe maintains your [[personal grimoire]].
+
+It brings a level of autonomy to grimoire which is similar to that provided by autonomous audit agents. 
 
 Instead of looking at audit agents as something that builds a report independently I see such autonomy as something that can raise the baseline of audits. 
 
@@ -24,7 +26,12 @@ We lean on autonomous reasoning where it increases leverage, but lean on manual 
 
 Interestingly, these observations have held for the longest time, and were true before the rise of agents. I have worked on various automation tools myself employing symbolic execution and static analysis to automatically discover some groups of bugs. 
 
+## Ingestion
 
+* it would be cool to set up a processing pipeline of sorts which gets us a bunch of refined vulns
+
+
+---
 
 
 

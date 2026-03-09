@@ -6,21 +6,7 @@ Generated: 2026-03-09
 
 Items with remaining work, sorted by priority (highest first).
 
-### 1. agent:librarian
-- **Status:** not_implemented
-- **Spec detail:** detailed
-- **Spec:** `grimoire/agents/librarian.md`
-- **Dependencies:** None (standalone, used on-demand by other agents)
-- **Why priority:** Referenced by familiar, finding-review, checks, and many other future agents. Standalone with no dependencies. Implementing it early unblocks quality across the board.
-- **Tasks:**
-  1. Design agent prompt emphasizing reference-backed claims, no speculation
-  2. Implement directed-question workflow (specific question → referenced answer)
-  3. Implement generic-study workflow (async context priming)
-  4. Set up integrations: solodit, exa, github CLI, web search
-  5. Build reference tracking and citation system
-  6. Create personal grimoire lookup for local knowledge
-
-### 2. skill:review-cartography (supporting infrastructure)
+### 1. skill:review-cartography (supporting infrastructure)
 - **Status:** shallow
 - **Spec detail:** detailed
 - **Spec:** `grimoire/skills/cartography.md`
@@ -32,7 +18,7 @@ Items with remaining work, sorted by priority (highest first).
   4. Create `scripts/validate-cartography.sh` (verify format, frontmatter, file existence, link reciprocity)
   5. Create `scripts/find-overlaps.sh` (compare flows, flag >40% overlap candidates)
 
-### 3. skill:gc-cartography (supporting infrastructure)
+### 2. skill:gc-cartography (supporting infrastructure)
 - **Status:** shallow
 - **Spec detail:** detailed
 - **Spec:** `grimoire/skills/cartography.md`
@@ -46,7 +32,7 @@ Items with remaining work, sorted by priority (highest first).
   6. Create `scripts/update-references.sh` (fix stale cartography links across repo)
   7. Create `scripts/validate-gc.sh` (verify merge result integrity)
 
-### 4. agent:sigil
+### 3. agent:sigil
 - **Status:** not_implemented
 - **Spec detail:** detailed
 - **Spec:** `grimoire/agents/sigil.md`
@@ -59,7 +45,7 @@ Items with remaining work, sorted by priority (highest first).
   5. Implement super-sigil pattern (semgrep/slither runners spawning validation sigils)
   6. Design sigil → familiar triage coordination
 
-### 5. agent:familiar
+### 4. agent:familiar
 - **Status:** not_implemented
 - **Spec detail:** detailed
 - **Spec:** `grimoire/agents/familiar.md`
@@ -72,7 +58,7 @@ Items with remaining work, sorted by priority (highest first).
   5. Add quality control helpers (accuracy checks, completeness estimates)
   6. Create PoC review and feedback workflow
 
-### 6. agent:scribe
+### 5. agent:scribe
 - **Status:** not_implemented
 - **Spec detail:** detailed
 - **Spec:** `grimoire/agents/scribe.md`
@@ -85,7 +71,7 @@ Items with remaining work, sorted by priority (highest first).
   5. Create spellbook storage structure (detect/, rules/, modules/)
   6. Document scribe-summon integration for audit initialization
 
-### 7. concept:backpressure (enforcement in skills)
+### 6. concept:backpressure (enforcement in skills)
 - **Status:** partial
 - **Spec detail:** detailed
 - **Spec:** `grimoire/concepts/backpressure.md`
@@ -95,7 +81,7 @@ Items with remaining work, sorted by priority (highest first).
   2. Add to summon step 8: explicit check for backpressure before recommending autonomous findings
   3. Add to write-poc: "avoid unmeasurable claims" guidance
 
-### 8. concept:the-original-sin + concept:leverage (explicit in skills)
+### 7. concept:the-original-sin + concept:leverage (explicit in skills)
 - **Status:** partial (implicit)
 - **Spec detail:** detailed
 - **Dependencies:** None
@@ -104,7 +90,7 @@ Items with remaining work, sorted by priority (highest first).
   2. Update write-poc philosophy section to reference human-directed hypothesis, not autonomous exploitation
   3. Update summon philosophy to emphasize researcher interprets crown jewels, agent only maps
 
-### 9. concept:trivial-verifiability (explicit in skills)
+### 8. concept:trivial-verifiability (explicit in skills)
 - **Status:** partial
 - **Spec detail:** detailed
 - **Spec:** `grimoire/concepts/(trivial) verifiability.md`
@@ -113,7 +99,7 @@ Items with remaining work, sorted by priority (highest first).
   1. Add verifiability language to write-poc steps 2-3 (goal condition as testable hypothesis)
   2. Reference falsifiable vs verifiable distinction in summon step 8 and checks step 2
 
-### 10. concept:hypothesis-generation (explicit in skills)
+### 9. concept:hypothesis-generation (explicit in skills)
 - **Status:** partial
 - **Spec detail:** detailed
 - **Spec:** `grimoire/concepts/hypothesis generation.md`
@@ -122,7 +108,7 @@ Items with remaining work, sorted by priority (highest first).
   1. Frame goal condition as "testable hypothesis" in write-poc
   2. Add seeded vs unseeded guidance to cartography exploration modes
 
-### 11. concept:context-building (gadgets gap)
+### 10. concept:context-building (gadgets gap)
 - **Status:** partial
 - **Spec detail:** detailed
 - **Spec:** `grimoire/concepts/context building.md`
@@ -131,7 +117,7 @@ Items with remaining work, sorted by priority (highest first).
   1. Document gadget concept and catalog structure
   2. Add gadget awareness to write-poc workflow (check for applicable gadgets)
 
-### 12. flow:finding-discovery
+### 11. flow:finding-discovery
 - **Status:** partial
 - **Spec detail:** partial
 - **Spec:** `grimoire/flows/finding discovery.md`
@@ -140,7 +126,7 @@ Items with remaining work, sorted by priority (highest first).
   1. Document end-to-end flow once finding skill is built
   2. Wire PoC → finding → scribe pipeline
 
-### 13. flow:autonomous-discovery
+### 12. flow:autonomous-discovery
 - **Status:** not_implemented
 - **Spec detail:** partial
 - **Spec:** `grimoire/flows/autonomous discovery.md`
@@ -150,7 +136,7 @@ Items with remaining work, sorted by priority (highest first).
   2. Wire librarian integration points
   3. Document the full autonomous discovery flow
 
-### 14. skill:scribe-distill
+### 13. skill:scribe-distill
 - **Status:** not_implemented
 - **Spec detail:** partial
 - **Spec:** `grimoire/skills/scribe.md`
@@ -161,7 +147,7 @@ Items with remaining work, sorted by priority (highest first).
   3. Build examples of distillation for common vuln types
   4. Define trigger conditions and integration with scribe agent
 
-### 15. concept:personal-grimoire
+### 14. concept:personal-grimoire
 - **Status:** not_implemented
 - **Spec detail:** partial
 - **Spec:** `grimoire/concepts/personal grimoire.md`
@@ -170,7 +156,7 @@ Items with remaining work, sorted by priority (highest first).
   1. Define ~/.grimoire/ directory structure
   2. Implement sigil merge workflow (project → personal grimoire)
 
-### 16. infra:spellbook (management)
+### 15. infra:spellbook (management)
 - **Status:** partial
 - **Spec detail:** partial
 - **Spec:** `grimoire/agents/scribe.md`
@@ -179,7 +165,7 @@ Items with remaining work, sorted by priority (highest first).
   1. Add user-facing explanation of spellbook concept
   2. Implement spellbook management workflow (depends on scribe)
 
-### 17. infra:tomes (format guidance)
+### 16. infra:tomes (format guidance)
 - **Status:** partial
 - **Spec detail:** partial
 - **Spec:** `grimoire/skills/summon.md`, `grimoire/ideas/todo.md`
@@ -195,28 +181,28 @@ Items that work but need structural improvements.
 ### skill:review-cartography
 - SKILL.md is complete (6,229 bytes) but has no supporting infrastructure
 - No references/, examples/, or scripts/ directories
-- See Priority Queue #2 for tasks
+- See Priority Queue #1 for tasks
 
 ### skill:gc-cartography
 - SKILL.md is complete (6,390 bytes) but has no supporting infrastructure
 - No references/, examples/, or scripts/ directories
-- See Priority Queue #3 for tasks
+- See Priority Queue #2 for tasks
 
 ### concept:trivial-verifiability
 - Enforced via PoC checklist but falsifiable vs verifiable framing absent from skill instructions
-- See Priority Queue #9 for tasks
+- See Priority Queue #8 for tasks
 
 ### concept:hypothesis-generation
 - Partially reflected in PoC goal conditions and cartography exploration modes
-- See Priority Queue #10 for tasks
+- See Priority Queue #9 for tasks
 
 ### concept:backpressure
 - Checks skill provides backpressure; no explicit enforcement mechanism in other skills
-- See Priority Queue #7 for tasks
+- See Priority Queue #6 for tasks
 
 ### infra:tomes
 - Summon creates tomes/ directory; needs format guidance doc
-- See Priority Queue #17
+- See Priority Queue #16
 
 ### infra:spellbook
 - Summon creates spells/ directory; checks stores in grimoire/spells/checks/
@@ -238,6 +224,7 @@ Items that work but need structural improvements.
 - **concept:dont-get-in-the-way** — Exploration-first approach in cartography and summon.
 - **infra:audit-directory-structure** — Fully specified in summon SKILL.md step 2.
 - **infra:cartography-directory** — Fully specified with format, indexing script, and examples.
+- **agent:librarian** — External research agent. `agents/librarian.md` with agent frontmatter (name, description with trigger phrases, tools: Read/Grep/Glob/Bash/WebSearch/WebFetch). System prompt covers two modes (directed question, generic study), 6-tier source priority (specs → repos → security KBs → audits → local grimoire → web), citation format, and constraints (no file mods, no code gen, citation required). Plugin.json updated with `"agents": "auto"`. Placeholder references updated in finding-draft, finding-review, checks, and finding-best-practices. context7/exa omitted (MCP services not bundled; WebSearch covers same ground). 12/16 spec requirements covered; 4 gaps are low-severity (familiar/autonomous-discovery agents not yet implemented, context7/exa are environment-specific MCP configs).
 
 ## Needs Spec Work
 

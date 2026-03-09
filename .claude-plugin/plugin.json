@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Security research toolkit for discovering and remediating vulnerabilities",
   "components": {
-    "skills": "auto"
+    "skills": "auto",
+    "agents": "auto"
   }
 }

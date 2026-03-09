@@ -64,7 +64,7 @@ for similar instances look like?
 **From domain knowledge.** The user knows a class of bugs to look for (e.g., "check for ERC-4626
 vault issues"). Extract the specific patterns and assessment criteria.
 
-**From external research.** Use the Librarian agent (when available) to gather context on a
+**From external research.** Use the librarian agent to gather context on a
 vulnerability class, then distill into grep-able patterns and assessment rules.
 
 For any source, extract:
@@ -192,7 +192,7 @@ Based on results, suggest:
 - **Subagents for application.** Never apply checks in the main context. Each check gets its
   own subagent with isolated context.
 - **Checks are pointers, not analyses.** They describe where to look and how to assess, not
-  what the vulnerability is in depth. Use Librarian for background.
+  what the vulnerability is in depth. Use the librarian agent for background.
 - **When in doubt, split.** Two simple checks always beat one complex check.
 - **Checks live in `grimoire/spells/checks/`.** This is part of the spellbook directory
   created by [[summon]].

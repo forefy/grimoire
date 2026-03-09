@@ -91,7 +91,9 @@ preconditions, and impact.
 
 **## Recommendation** (mandatory) — objective fix direction. Never non-trivial code changes.
 
-**## References** (optional) — numbered citations. *(Librarian agent not yet available.)*
+**## References** (optional) — numbered citations. Use the librarian agent to discover
+relevant references — prior audit findings, specification clauses, and vulnerability
+database entries related to the flaw.
 
 Consult `skills/finding/examples/reentrancy-finding.md` for a complete finding and
 `skills/finding/examples/access-control-finding.md` for a minimal valid finding.

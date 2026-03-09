@@ -136,7 +136,8 @@ Do not overstate confidence.
 - When referencing a concept (e.g., reentrancy), provide background for readers who may
   not know the term — do not assume universal knowledge
 - Prefer primary sources: official documentation, specification documents, registry entries
-- When the librarian agent becomes available, it will assist with reference discovery
+- Use the librarian agent for reference discovery — it searches external documentation,
+  audit databases, and specifications to find citable sources for claims in findings
 
 ## Common Mistakes Checklist
 

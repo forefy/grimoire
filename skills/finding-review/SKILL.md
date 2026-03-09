@@ -78,8 +78,10 @@ and preconditions?
 **Familiar agent check** — *(Not yet available. Note: "Issue validity check skipped —
 familiar agent not yet implemented.")*
 
-**Librarian agent check** — *(Not yet available. Note: "Reference discovery skipped —
-librarian agent not yet implemented.")*
+**Librarian agent check** — Use the librarian agent to verify cited references exist and
+are accurate. Ask the librarian to search for additional relevant references (prior findings
+for similar flaws, specification clauses, security advisories) that could strengthen the
+finding.
 
 ### 3. Present Review and Offer Updates
 

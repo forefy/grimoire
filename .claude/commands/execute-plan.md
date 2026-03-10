@@ -122,7 +122,8 @@ design the implementation. The subagent should produce:
 - **Spec compliance** — how each spec requirement maps to an implementation element
 - **Edge cases** — anything the spec is ambiguous about, with proposed resolution
 
-Present this plan to the user and **wait for confirmation** before proceeding.
+Present this plan to the user briefly, then **proceed immediately** to implementation.
+Do not wait for confirmation — the user trusts the process.
 
 ### 3. Implement
 

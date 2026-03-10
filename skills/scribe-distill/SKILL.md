@@ -128,8 +128,9 @@ Follow the check format from `skills/checks/references/check-format.md`:
 Create the file in `grimoire/spells/checks/` with a slugified filename. Consult
 `skills/checks/examples/` for worked examples at different complexity levels.
 
-**Gnome delegation point:** When the Gnome agent is available, delegate steps 6-7 to a
-Gnome with the checks skill loaded. For now, create the check directly.
+**Gnome delegation:** Spawn a Gnome agent to build the check. Provide it with the
+generalized pattern, target language(s), severity/confidence guidance, and assessment
+criteria. The Gnome handles file creation, format compliance, and validation.
 
 **For knowledge artifacts (not automatable):**
 

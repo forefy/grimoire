@@ -44,9 +44,7 @@ forge-poc-templates/          # Git submodule: Immunefi's Solidity PoC library
 
 ### Specified but Not Yet Implemented
 
-**Agents:** Familiar (QA/triage), Scribe (detection modules), Sigil (static analysis), Librarian (external research), Gnome (coding tasks)
-
-**Skills:** Scribe automation, Sigil checks (Semgrep, Slither, CodeQL integration)
+**Skills:** Semgrep rules, Slither detectors, CodeQL integration
 
 Use `/gap-analysis` to get a current prioritized view of what's spec'd vs built.
 

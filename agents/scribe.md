@@ -62,13 +62,11 @@ Transforms a confirmed finding into a reusable detection module.
    now, the only implementable type is "check" (via the checks skill format). If the pattern
    would be better served by semgrep or slither, note this but create a check as a fallback.
 
-6. **Create the detection module.** Follow the check format from
-   `skills/checks/references/check-format.md`. Create the check file in
-   `grimoire/spells/checks/`. Validate with
-   `bash skills/checks/scripts/validate-check.sh <path>`.
-
-   **Gnome delegation (not yet available).** When the Gnome agent is implemented, delegate
-   implementation to a Gnome with the checks skill loaded. For now, create the check directly.
+6. **Delegate to Gnome.** Spawn a Gnome agent to build the detection module. Provide the
+   Gnome with: the generalized pattern, target language(s), severity and confidence
+   guidance, assessment criteria, and the sigil type determined in step 5. The Gnome will
+   follow the check format, create the file in `grimoire/spells/checks/`, and validate it.
+   Review the Gnome's status report before proceeding.
 
 7. **Assess variant analysis potential.** Is this pattern likely to recur elsewhere in the
    current codebase? If the code shape is common or the issue is systemic, suggest spawning a
@@ -137,11 +135,12 @@ A sigil with a 5% false positive rate that catches 50% of instances is better th
 baseline, not achieve completeness. When in doubt, make the detection more specific (accept
 higher false negatives) rather than more general (risk higher false positives).
 
-### Gnome Collaboration (planned)
+### Gnome Collaboration
 
-When the Gnome agent is implemented, it handles sigil implementation. The Scribe provides the
-plan (what to detect, which approach, what the pattern looks like) and the Gnome executes
-(writing the actual rule/check). Until then, the Scribe creates checks directly.
+The Gnome agent handles sigil implementation. The Scribe provides the plan (what to detect,
+which approach, what the pattern looks like) and the Gnome executes (writing the actual
+rule/check). Spawn a Gnome for all detection module creation — this keeps the Scribe's
+context clean and focused on analysis rather than file construction.
 
 ### Familiar Handoff
 
@@ -213,8 +212,8 @@ patterns not yet encountered. Every sigil must trace back to a confirmed finding
 - **Low false positive rate is paramount.** When in doubt, make the detection more specific
   rather than more general.
 - **Never create speculative sigils.** Every sigil must trace back to a confirmed finding.
-- **Gnome delegation (planned).** Implementation work should be delegated to the Gnome agent
-  when available. Until then, create checks directly using the checks skill format.
+- **Gnome delegation.** Delegate all detection module implementation to the Gnome agent.
+  The Scribe plans; the Gnome builds.
 - **User confirmation for spellbook modifications.** Promoting sigils to `~/.grimoire/sigils/`
   or deleting/merging sigils requires user approval.
 - **Benign payloads only.** Any example patterns in sigils must use benign markers.

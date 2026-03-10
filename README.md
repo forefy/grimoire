@@ -164,9 +164,9 @@ Grimoire's agents are autonomous specialists that handle background work:
 |-------|------|--------|
 | **Sigil** | Single-context vulnerability hunter. Runs checks and static analysis, reports findings for triage. | Implemented |
 | **Librarian** | External research. Answers directed questions about specs, docs, and prior art with references. | Implemented |
-| **Familiar** | QA gatekeeper. Triages all agent findings before they reach you. Skeptical by default. | Spec'd |
-| **Scribe** | Learning engine. Turns confirmed findings into reusable detection modules (sigils). | Spec'd |
-| **Gnome** | Isolated task executor. Implements PoCs and detection modules with focused context. | Spec'd |
+| **Familiar** | QA gatekeeper. Triages all agent findings before they reach you. Skeptical by default. | Implemented |
+| **Scribe** | Learning engine. Turns confirmed findings into reusable detection modules (sigils). | Implemented |
+| **Gnome** | Isolated task executor. Implements PoCs and detection modules with focused context. | Implemented |
 
 ### The learning loop
 

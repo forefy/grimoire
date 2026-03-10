@@ -3,11 +3,11 @@ name: Review Cartography
 description: >-
   This skill should be used when the user says "review a flow",
   "improve a flow", "verify a flow", "refine cartography",
-  "/review-cartography", "check a cartography file", "update a flow map",
-  "verify flow accuracy", or wants to verify and improve an existing
+  "check a cartography file", "verify flow accuracy",
+  "are my flows still accurate", or wants to verify and improve an existing
   cartography file against the actual codebase. It cross-references
-  documented flows with real code, fills gaps, adds related flow links,
-  and introduces conditional sections where needed.
+  documented flows with real code, fills gaps, fixes stale paths,
+  adds related flow links, and introduces conditional sections where needed.
 user_invocable: true
 ---
 
@@ -101,8 +101,16 @@ Compare the current flow against all other flows in the index:
 - Add `[[cartography/...]]` links in the Related Flows section
 - **Make links reciprocal** — if flow A references flow B, update flow B to reference flow A
 
+Run the overlap detection script to check for significant duplication:
+
+```bash
+bash skills/review-cartography/scripts/find-overlaps.sh grimoire/cartography/
+```
+
 If significant overlap is detected (>40% shared components between two flows), note this to
-the user and suggest [[gc-cartography]] for potential merging.
+the user and suggest [[gc-cartography]] for potential merging. Consult
+`references/overlap-detection.md` for details on how overlap is calculated and when merging
+is appropriate.
 
 ### 5. Add Conditional Sections
 
@@ -126,6 +134,12 @@ Write all changes to the cartography file:
 
 - Update the `updated` field in frontmatter to today's date
 - Preserve the original `created` date
+
+Validate the updated file:
+
+```bash
+bash skills/review-cartography/scripts/validate-cartography.sh grimoire/cartography/<flow-slug>.md
+```
 
 Re-run the indexing script:
 

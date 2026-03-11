@@ -2,3 +2,4 @@ grimoire/.obsidian
 marker-groups
 .pi
 .claude/settings.local.json
+.superset/*
